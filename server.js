@@ -19,7 +19,7 @@ app.set('view engine', 'ejs')
 
 // CORS SETUP
 const corsOptions = {
-    origin: process.env.ALLOWED_CLIENTS.split(',')
+    origin: process.env.ALLOWED_CLIENTS
 }
 app.use(cors(corsOptions));
 
