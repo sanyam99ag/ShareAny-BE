@@ -2,6 +2,7 @@ const File = require('./models/file');
 const fs = require('fs');
 const connectDB = require('./config/db');
 connectDB();
+const schedule = require('node-schedule');
 
 // Get and delete all records older than 24 hours 
 async function deleteData() {
@@ -26,4 +27,7 @@ async function deleteData() {
 // deleteData().then(() => {
 //     process.exit(); // to stop the script
 // })
-deleteData().then(process.exit);
+
+schedule.scheduleJob("0 2 * * *", async() => {
+    deleteData().then(process.exit);
+});
